@@ -1,0 +1,9 @@
+.band {
+  height: 5vh;
+  background-color: darkblue;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

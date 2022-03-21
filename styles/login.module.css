@@ -1,0 +1,62 @@
+.wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialogWrapper {
+  width: 30%;
+
+  text-align: center;
+
+  padding: 1em;
+
+  background-color: lightgray;
+  border: 1px solid grey;
+  border-radius: 10%;
+}
+
+.formTitle {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.buttonRow {
+  display: flex;
+  width: 100%;
+  padding: 0.5em;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonRow > button {
+  margin: 0px 2em;
+}
+
+.flushLink {
+  color: blue;
+  cursor: pointer;
+
+  margin: 0px 1.5em;
+}
+
+.formError {
+  color: red;
+}
