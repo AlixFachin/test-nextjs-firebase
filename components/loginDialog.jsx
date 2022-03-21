@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import styles from '../styles/login.module.css'
 
-import { useState, useRef } from "react/cjs/react.development";
+import { useState, useRef } from 'react';
 
 const googleProvider = new GoogleAuthProvider();
 
