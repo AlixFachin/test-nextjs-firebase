@@ -1,11 +1,10 @@
-.sidebox {
+.sideBar {
   width: clamp(200px, 25vw, 600px);
   height: 100%;
   background-color: lightgray;
   border: 1px solid grey;
   border-radius: 10px;
 }
-
 .errorMessage {
   color: red;
 }

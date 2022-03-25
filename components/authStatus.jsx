@@ -1,31 +1,27 @@
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react';
 
-import styles from '../styles/sidebar.module.css';
+import styles from '../styles/authStatus.module.css';
 
 import LoginDialog from './loginDialog';
 
 import { firebaseAuth } from '../firebase/clientApp';
 
-export default function AuthStatus() {
+export default function AuthStatus( props ) {
     const [ currentUser, setCurrentUser ] = useState(null);
     const [ isLoginDialogVisible, setLoginDialogVisibility ] = useState(false);
     const [ statusMessage, setStatusMessage ] = useState('');
 
+    const authChangedCallBack = (user) => {
+            setCurrentUser(user? user : '');
+            props.setCurrentUser(user? user : '');
+    };
+
     useEffect(() => {
+        onAuthStateChanged(firebaseAuth, authChangedCallBack);
+    }, []);
 
-        onAuthStateChanged(firebaseAuth, user => {
-            if (user) {
-                // User is signed in...
-                setCurrentUser(user);
-            } else {
-                // User is signed out...
-                setCurrentUser('');
-            }
-        })
-    }, [])
-
-    const showLoginDialog = () => {
+    function showLoginDialog() {
         setLoginDialogVisibility(true);
     }
 
@@ -46,15 +42,15 @@ export default function AuthStatus() {
 
     let buttonContent;
     if (currentUser) {
-        buttonContent = <><p>{ currentUser.email }</p><button type="button" onClick={ logOut }>Logout</button> </>;
+        buttonContent = (<><p>👋</p><button type="button" onClick={ logOut }>Logout</button> </>);
     } else {
-        buttonContent = <><p>Not Logged!</p><button onClick={ showLoginDialog }> Login </button> </>
+        buttonContent = (<><p>🚫</p><button onClick={ showLoginDialog }> Login </button> </>);
     }
 
     return (
-        <div className={ styles.sidebox }>
+        <div>
             { statusMessage !== '' ? <div> { statusMessage } </div> : '' }
-            <div>{ buttonContent } </div>
+            <div className={ styles.authComponent }>{ buttonContent } </div>
             { isLoginDialogVisible ? <LoginDialog auth={ firebaseAuth } hideDialog={ hideLoginDialog } />  : '' }
         </div>
     );
